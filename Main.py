@@ -1,5 +1,6 @@
 import requests
 import re
+from html import unescape
 import json
 from datetime import datetime
 from pycookie import chromecookie
@@ -23,7 +24,7 @@ try:
             language = re.findall(r'<a href="/language/([^/]+)', webdata)
             raw_strings = re.findall(r'data-src="(https?)://[A-z]+([0-9]+).{25,35}/(?:[0-9]+[A-z]+).([^"]+)', webdata)
             print("\n -------------------------------------")
-            print(f" : Manga Name : {title.group('title')}")
+            print(f" : Manga Name : {unescape(title.group('title'))}")
             print(" -------------------------------------")
             print(f" : Artist     : {title.group('artist')}")
             print(" -------------------------------------")
@@ -55,3 +56,4 @@ try:
 
 except NameError as error:
     print(f"\n Oops! This Happened : {error}")
+
